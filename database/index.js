@@ -2,8 +2,8 @@
 const Sequelize = require('sequelize');
 const useDb = process.env.NODE_ENV === 'test' ? 'yumnoms_test' : 'yumnoms';
 
-const sequelize = new Sequelize(useDb, 'student', 'student', {
-  host: 'localhost',
+const sequelize = new Sequelize(useDb, 'root', 'p4ssw0rd', {
+  host: 'database',
   dialect: 'mysql',
 });
 

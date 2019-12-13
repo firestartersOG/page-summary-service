@@ -7,10 +7,18 @@ services:
       - 'database'
     ports:
       - '3001:3001'
+    command: >
+      bash -c "./wait-for-it.sh database:3306 && npm run db-seed && npm start"
 
   database:
     image: mysql:5.7.28
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: p4ssw0rd
+      MYSQL_DATABASE: yumnoms
+    ports:
+      - '3306:3306'
 
 # Run this with:
-# `docker-compose up -d`
+# `docker-compose up -d` --build to overwrite existing image
 #

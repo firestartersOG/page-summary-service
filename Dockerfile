@@ -11,11 +11,14 @@ RUN npm install
 # Bundle app source
 COPY . /src/app
 
-RUN npm run build && npm run db-seed
+RUN apk update && apk add bash coreutils
+RUN npm run build
+#&& npm run db-seed
 
 EXPOSE 3001
 
-CMD [ "npm", "start" ]
+# ENTRYPOINT [ "executable" ]
+# CMD [ "./wait-for-it.sh", "localhost:3306", "--strict", "npm", "start" ]
 
 # How to run this:
 # In terminal, cd to this directory (reviews-service)
