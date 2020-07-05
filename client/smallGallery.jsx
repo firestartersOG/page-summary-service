@@ -18,7 +18,7 @@ class SmallGallery extends React.Component {
     this.firstPhoto;
     if (this.state.count % 2 !== 0) {
       const first = this.photoArray.shift();
-      this.firstPhoto = <Photo src={first.imageUrl} onClick={this.showModal} primary />
+      this.firstPhoto = <Photo src={first.imageUrl} onClick={this.showModal} primary />;
     }
   }
 

@@ -4,6 +4,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Feed from './feed.jsx';
+import NewReview from './newreview.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends React.Component {
   apiGet(businessId) {
     $.ajax({
       method: 'GET',
-      url: `http://52.52.21.106/api/business${businessId}`,
+      url: `/api/business${businessId}`,
     })
       .then((data) => {
         this.extractReviews(data);
@@ -75,6 +76,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <NewReview />
         <Feed reviews={this.state.reviewList} />
       </div>
     );

@@ -35,8 +35,14 @@ app.put('/api/vote/:reviewId/:vote', (req, res) => {
 
 app.post('/api/review', (req, res) => {
   // request should include the fields needed to create a new record in the database
-  console.log(req.body); // req.body is empty right now and failing tests
-  controller.postReview(req.body)
+  console.log('hello from router');
+  console.log('req.body', req.body); // req.body is empty right now and failing tests
+  controller.getBusiness(req.body.business_id)
+    .then((res) => {
+      console.log('editing business id', req.body.business_id, res.dataValues.business_id);
+      req.body.business_id = res.dataValues.business_id;
+    })
+    .then(() => controller.postReview(req.body))
     .then((msg) => res.status(201).send(msg))
     .catch((err) => console.error(err));
 });
